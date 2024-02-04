@@ -23,7 +23,6 @@ dependencies {
     testImplementation("org.assertj:assertj-core:$assertjVersion")
 }
 
-
 repositories {
     mavenCentral()
 }

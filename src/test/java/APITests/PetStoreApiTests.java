@@ -59,7 +59,6 @@ public class PetStoreApiTests extends BaseTest {
         Map<String, Object> responseBody = getResponseBody(response, Map.class);
         assertThat(responseBody.get(ID)).isEqualTo(uniquePetID);
         assertThat(responseBody.get(NAME)).isEqualTo(updatedPetName);
-
     }
 
     @Test

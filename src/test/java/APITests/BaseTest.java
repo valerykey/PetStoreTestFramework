@@ -32,7 +32,11 @@ public class BaseTest {
     HttpResponse get(String id, String URL) throws IOException {
         final HttpGet httpGet = new HttpGet(URL + "/" + id);
         httpGet.setHeader(ACCEPT, APPLICATION_JSON);
-        return httpClient.execute(httpGet);
+        try {
+            return httpClient.execute(httpGet);
+        } catch (IOException e) {
+            throw new IOException("Failed to execute GET request", e);
+        }
     }
 
     HttpResponse post(String requestBody, String URL) throws IOException {
@@ -40,7 +44,11 @@ public class BaseTest {
         httpPost.setEntity(new StringEntity(requestBody));
         httpPost.setHeader(ACCEPT, APPLICATION_JSON);
         httpPost.setHeader(CONTENT_TYPE, APPLICATION_JSON);
-        return httpClient.execute(httpPost);
+        try {
+            return httpClient.execute(httpPost);
+        } catch (IOException e) {
+            throw new IOException("Failed to execute POST request", e);
+        }
     }
 
     HttpResponse put(String requestBody, String URL) throws IOException {
@@ -48,13 +56,21 @@ public class BaseTest {
         httpPut.setEntity(new StringEntity(requestBody));
         httpPut.setHeader(ACCEPT, APPLICATION_JSON);
         httpPut.setHeader(CONTENT_TYPE, APPLICATION_JSON);
-        return httpClient.execute(httpPut);
+        try {
+            return httpClient.execute(httpPut);
+        } catch (IOException e) {
+            throw new IOException("Failed to execute PUT request", e);
+        }
     }
 
     HttpResponse delete(String id, String URL) throws IOException {
         final HttpDelete httpDelete = new HttpDelete(URL + "/" + id);
         httpDelete.setHeader(ACCEPT, APPLICATION_JSON);
-        return httpClient.execute(httpDelete);
+        try {
+            return httpClient.execute(httpDelete);
+        } catch (IOException e) {
+            throw new IOException("Failed to execute DELETE request", e);
+        }
     }
 
     public static int generateRandomNumber() {
